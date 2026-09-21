@@ -13,7 +13,7 @@ GEM
     ansi (1.6.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bigdecimal (4.1.2)
+    bigdecimal (4.1.3)
     builder (3.3.0)
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
@@ -94,7 +94,7 @@ PLATFORMS
 
 DEPENDENCIES
   base64
-  bigdecimal (~> 4.0)
+  bigdecimal (~> 4.1)
   bundler-audit (~> 0.9)
   dotenv (~> 3.2)
   friday_gemini_ai!
