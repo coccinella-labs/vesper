@@ -43,7 +43,7 @@ Run:
 <br>
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bniladridas/vesper/main/bin/setup-vesper | bash
+curl -fsSL https://raw.githubusercontent.com/coccinella-labs/vesper/main/bin/setup-vesper | bash
 ```
 
 <br>

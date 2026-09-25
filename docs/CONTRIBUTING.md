@@ -6,7 +6,7 @@ Contributions are welcome when they keep the project small, clear, and tested.
 
 <br>
 
-Please read the [`Code of Conduct`](https://github.com/bniladridas/vesper/blob/main/docs/CODE_OF_CONDUCT.md) before participating.
+Please read the [`Code of Conduct`](https://github.com/coccinella-labs/vesper/blob/main/docs/CODE_OF_CONDUCT.md) before participating.
 
 <br>
 
@@ -19,7 +19,7 @@ Clone the repository, install the bundle, and copy the example environment file.
 <br>
 
 ```bash
-git clone https://github.com/bniladridas/vesper.git
+git clone https://github.com/coccinella-labs/vesper.git
 cd vesper
 bundle install
 cp config/.env.example .env
@@ -96,10 +96,10 @@ For feature requests, describe the use case and the smallest API that would solv
 
 | Topic | Link |
 | --- | --- |
-| Setup | [`Setup`](https://github.com/bniladridas/vesper/blob/main/docs/SETUP.md) |
-| Practices | [`Development practices`](https://github.com/bniladridas/vesper/blob/main/docs/guides/practices.md) |
-| Tests | [`Testing`](https://github.com/bniladridas/vesper/blob/main/docs/reference/testing.md) |
-| API | [`API reference`](https://github.com/bniladridas/vesper/blob/main/docs/reference/api.md) |
+| Setup | [`Setup`](https://github.com/coccinella-labs/vesper/blob/main/docs/SETUP.md) |
+| Practices | [`Development practices`](https://github.com/coccinella-labs/vesper/blob/main/docs/guides/practices.md) |
+| Tests | [`Testing`](https://github.com/coccinella-labs/vesper/blob/main/docs/reference/testing.md) |
+| API | [`API reference`](https://github.com/coccinella-labs/vesper/blob/main/docs/reference/api.md) |
 
 <br>
 

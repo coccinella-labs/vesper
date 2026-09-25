@@ -28,7 +28,7 @@ The project tracks maintained Ruby branches for local development and CI. Do not
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/bniladridas/vesper.git
+   git clone https://github.com/coccinella-labs/vesper.git
    cd vesper
    ```
 

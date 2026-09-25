@@ -6,7 +6,7 @@ Security reports should be handled privately.
 
 <br>
 
-Please do not open a public issue for a vulnerability. Use [`GitHub Security Advisories`](https://github.com/bniladridas/vesper/security/advisories/new) instead.
+Please do not open a public issue for a vulnerability. Use [`GitHub Security Advisories`](https://github.com/coccinella-labs/vesper/security/advisories/new) instead.
 
 <br>
 

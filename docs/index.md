@@ -69,7 +69,7 @@ puts response
 <br>
 
 - [RubyGems](https://rubygems.org/gems/friday_gemini_ai)
-- [Issues](https://github.com/bniladridas/vesper/issues)
-- [Discussions](https://github.com/bniladridas/vesper/discussions)
-- [`Security`](https://github.com/bniladridas/vesper/blob/main/.github/SECURITY.md)
-- [`License`](https://github.com/bniladridas/vesper/blob/main/LICENSE)
+- [Issues](https://github.com/coccinella-labs/vesper/issues)
+- [Discussions](https://github.com/coccinella-labs/vesper/discussions)
+- [`Security`](https://github.com/coccinella-labs/vesper/blob/main/.github/SECURITY.md)
+- [`License`](https://github.com/coccinella-labs/vesper/blob/main/LICENSE)

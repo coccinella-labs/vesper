@@ -10,7 +10,7 @@ Use GitHub for project discussion and support.
 
 <br>
 
-General questions, examples, and ideas belong in [GitHub Discussions](https://github.com/bniladridas/vesper/discussions).
+General questions, examples, and ideas belong in [GitHub Discussions](https://github.com/coccinella-labs/vesper/discussions).
 
 <br>
 
@@ -22,7 +22,7 @@ Search first, then open a focused thread with the Ruby version, gem version, ope
 
 <br>
 
-Use [GitHub Issues](https://github.com/bniladridas/vesper/issues) for bugs and scoped feature requests.
+Use [GitHub Issues](https://github.com/coccinella-labs/vesper/issues) for bugs and scoped feature requests.
 
 <br>
 
@@ -46,4 +46,4 @@ See [`Contributing`](../CONTRIBUTING.md) for setup and review notes.
 
 <br>
 
-Do not report vulnerabilities in public issues. Use [`GitHub Security Advisories`](https://github.com/bniladridas/vesper/security/advisories/new).
+Do not report vulnerabilities in public issues. Use [`GitHub Security Advisories`](https://github.com/coccinella-labs/vesper/security/advisories/new).

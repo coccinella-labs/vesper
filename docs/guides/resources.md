@@ -19,7 +19,7 @@ Additional resources, links, and references for Vesper.
 <br>
 
 # Vesper Documentation
-- [GitHub Repository](https://github.com/bniladridas/vesper) - Source code and issues
+- [GitHub Repository](https://github.com/coccinella-labs/vesper) - Source code and issues
 - [RubyGems](https://rubygems.org/gems/friday_gemini_ai) - Gem installation and versions
 - [`API Reference`](../reference/api.md) - Complete method documentation
 - [`Usage Guide`](../reference/usage.md) - Comprehensive examples
@@ -326,7 +326,7 @@ messages = [
 # Development Setup
 ```bash
 # Clone repository
-git clone https://github.com/bniladridas/vesper.git
+git clone https://github.com/coccinella-labs/vesper.git
 cd vesper
 
 # Install dependencies
