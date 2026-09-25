@@ -27,8 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'yard', '~> 0.9.34'
 
   # Code quality
-  spec.add_development_dependency 'rubocop', '~> 1.87.0'
-  spec.add_development_dependency 'rubocop-minitest', '~> 0.39.1'
+  spec.add_development_dependency 'rubocop', '~> 1.91.0'
+  spec.add_development_dependency 'rubocop-minitest', '~> 0.40.0'
   spec.add_development_dependency 'rubocop-rake', '~> 0.7.1'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
