@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 # Additional dependencies
-gem 'bigdecimal', '~> 4.0'
+gem 'bigdecimal', '~> 4.1'
 gem 'logger'
 
 # Development and test dependencies
