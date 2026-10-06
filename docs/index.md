@@ -15,7 +15,8 @@ Install the gem:
 <br>
 
 ```bash
-gem install friday_gemini_ai
+gem install specific_install
+gem specific_install -l https://github.com/coccinella-labs/vesper
 ```
 
 <br>
@@ -68,7 +69,6 @@ puts response
 
 <br>
 
-- [RubyGems](https://rubygems.org/gems/friday_gemini_ai)
 - [Issues](https://github.com/coccinella-labs/vesper/issues)
 - [Discussions](https://github.com/coccinella-labs/vesper/discussions)
 - [`Security`](https://github.com/coccinella-labs/vesper/blob/main/.github/SECURITY.md)

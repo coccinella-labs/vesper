@@ -7,7 +7,6 @@
 
 <br>
 
-[![Gem](https://img.shields.io/gem/v/friday_gemini_ai?style=flat-square&label=gem)](https://rubygems.org/gems/friday_gemini_ai)
 ![Ruby](https://img.shields.io/badge/ruby-%3E%3D%203.3-cc342d?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-2f4858?style=flat-square)](LICENSE)
 ![Tests](https://img.shields.io/badge/tests-passing-2e7d32?style=flat-square)
@@ -16,14 +15,20 @@
 
 Ruby client for Gemini `generateContent`. Includes a CLI and a PR review app.
 
+> Prior generation: [l2](https://github.com/coccinella-labs/l2) targets the stable `v1`
+> API with Gemini 2.x models. This repo targets the `v1beta` API with Gemini 3.x models.
+
 <br>
 
 # Installation
 
 <br>
 
+The gem is not published to RubyGems. Install it from git:
+
 ```bash
-gem install friday_gemini_ai
+gem install specific_install
+gem specific_install -l https://github.com/coccinella-labs/vesper
 ```
 
 <br>
@@ -33,12 +38,12 @@ With Bundler:
 <br>
 
 ```ruby
-gem 'friday_gemini_ai', require: 'vesper'
+gem 'friday_gemini_ai', github: 'coccinella-labs/vesper', require: 'vesper'
 ```
 
 <br>
 
-The package is published as `friday_gemini_ai`. The runtime entrypoint is `vesper`.
+The package name is `friday_gemini_ai`. The runtime entrypoint is `vesper`.
 
 <br>
 
