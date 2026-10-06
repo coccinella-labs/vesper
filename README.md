@@ -15,8 +15,10 @@
 
 Ruby client for Gemini `generateContent`. Includes a CLI and a PR review app.
 
+> [!NOTE]
 > Prior generation: [l2](https://github.com/coccinella-labs/l2) targets the stable `v1`
-> API with Gemini 2.x models. This repo targets the `v1beta` API with Gemini 3.x models.
+> API with Gemini 2.x models. Newer generation: [nuntius](https://github.com/palmshed/nuntius)
+> targets `v1beta` with Gemini 3.6 and later. This repo targets `v1beta` with Gemini 3.x models.
 
 <br>
 
