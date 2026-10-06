@@ -36,10 +36,12 @@ __pycache__/
 .DS_Store
 .env
 
-# Bundle directory (but keep config)
+# Bundle directory
 .bundle/
-!.bundle/config
 vendor/
+
+# Agent working memory (local state, not part of the repo)
+.codex/
 
 # Documentation
 testing_documentation.html
