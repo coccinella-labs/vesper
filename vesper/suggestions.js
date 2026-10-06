@@ -13,7 +13,7 @@ const { execSync } = require('child_process');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 function readMeta() {
-  const raw = fs.readFileSync('project.meta.json', 'utf8');
+  const raw = fs.readFileSync('docs/project-meta.json', 'utf8');
   return JSON.parse(raw);
 }
 
