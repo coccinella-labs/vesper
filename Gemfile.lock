@@ -13,7 +13,7 @@ GEM
     ansi (1.6.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bigdecimal (4.1.2)
+    bigdecimal (4.1.3)
     builder (3.3.0)
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
@@ -21,11 +21,11 @@ GEM
     crack (1.0.1)
       bigdecimal
       rexml
-    csv (3.3.5)
+    csv (3.3.6)
     dotenv (3.2.0)
     github-markup (6.0.0)
     hashdiff (1.2.1)
-    httparty (0.24.2)
+    httparty (0.24.3)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -42,7 +42,8 @@ GEM
       ruby-progressbar
     mocha (3.1.0)
       ruby2_keywords (>= 0.0.5)
-    multi_xml (0.6.0)
+    multi_xml (0.9.1)
+      bigdecimal (>= 3.1, < 5)
     parallel (2.1.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
@@ -94,7 +95,7 @@ PLATFORMS
 
 DEPENDENCIES
   base64
-  bigdecimal (~> 4.0)
+  bigdecimal (~> 4.1)
   bundler-audit (~> 0.9)
   dotenv (~> 3.2)
   friday_gemini_ai!
