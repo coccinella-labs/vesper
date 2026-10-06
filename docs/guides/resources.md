@@ -20,7 +20,6 @@ Additional resources, links, and references for Vesper.
 
 # Vesper Documentation
 - [GitHub Repository](https://github.com/coccinella-labs/vesper) - Source code and issues
-- [RubyGems](https://rubygems.org/gems/friday_gemini_ai) - Gem installation and versions
 - [`API Reference`](../reference/api.md) - Complete method documentation
 - [`Usage Guide`](../reference/usage.md) - Comprehensive examples
 

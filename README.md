@@ -316,11 +316,9 @@ MIT → see [`LICENSE`](LICENSE).
 <br>
 
 <p align="center">
-  <a href="https://github.com/apps/vesper-review">
-    <img src="website/favicon.svg" alt="Vesper Review app" width="96">
-  </a>
+  <img src="website/favicon.svg" alt="Vesper Review app" width="96">
 
 <br>
 
-  <a href="https://github.com/apps/vesper-review"><code>Vesper Review</code></a>
+  <code>Vesper Review</code>
 </p>

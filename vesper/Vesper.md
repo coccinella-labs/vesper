@@ -10,7 +10,7 @@ Vesper reviews pull requests with Gemini and posts review comments. It can also 
 
 <br>
 
-Use the hosted GitHub App at https://github.com/apps/vesper-review, or create your own GitHub App from GitHub settings. The app needs repository permissions for contents read, issues read/write, and pull requests read/write. For webhook mode, subscribe it to pull request, issue comment, and pull request review comment events. Generate a private key and install the app on the repositories Vesper should review.
+Create your own GitHub App from GitHub settings. The app needs repository permissions for contents read, issues read/write, and pull requests read/write. For webhook mode, subscribe it to pull request, issue comment, and pull request review comment events. Generate a private key and install the app on the repositories Vesper should review.
 
 <br>
 
