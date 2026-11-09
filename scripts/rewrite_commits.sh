@@ -57,11 +57,13 @@ SYSTEM_PROMPT='You write git commit messages. Output only the commit message, no
 code fences, no commentary, no quotes. The subject line must start with a
 lowercase conventional-commit type followed by a colon and space (feat:, fix:,
 docs:, style:, refactor:, test:, chore:, ci:, perf:, build:), stay lowercase
-after the type, be at most 60 characters, and not end with a period. Add a short
-body only when the diff needs explanation, wrapped at 72 characters.'
+after the type, be at most 60 characters, and not end with a period. This rule
+applies to every commit, including merges: a merge is described by what it
+brought in, using a type like feat: or fix:. Add a short body only when the diff
+needs explanation, one paragraph per line, no wrapping.'
 
 build_prompt() {
-  local subject=$1 body=$2 diff=$3
+  local subject=$1 body=$2 diff=$3 feedback=${4:-}
   cat <<EOF
 Rewrite the commit message for the change below.
 
@@ -75,6 +77,7 @@ $STYLE
 Diff:
 $diff
 EOF
+  [ -n "$feedback" ] && printf '\nYour last answer was rejected: %s\n' "$feedback"
 }
 
 rewrite_message() {
@@ -91,12 +94,13 @@ $prompt"); then
 
 # Fix the things the model gets wrong most often instead of retrying: strip
 # fences and wrapping quotes, drop a conventional-commit scope the repo hook
-# rejects, lowercase the subject, drop a trailing period, truncate to 60.
+# rejects, lowercase the subject, drop a trailing period, truncate to 60. The
+# body, when present after a blank line, is kept as written.
 normalise() {
   sed -e '/^```/d' | awk 'NR==1{print tolower($0); next} {print}' \
     | sed -e '1s/^[[:space:]"'\'']*//' -e '1s/[[:space:]"'\'']*$//' -e '1s/[.]*$//' \
-    | sed -e '1s/^\([a-z]*\)([^)]*): /\1: /' \
-    | awk 'NR==1{print substr($0,1,60); next} NR==2&&$0==""{exit} {print}'
+    | sed -e '1s/^\([a-z]*\)([a-z0-9_-]*): /\1: /' \
+    | awk 'NR==1{print substr($0,1,60); next} {print}'
 }
 
 parent=$BASE
@@ -124,29 +128,36 @@ for commit in $(git rev-list --reverse --max-count="$count" "$BASE..HEAD"); do
   if git rev-list --parents -n1 "$commit" | awk '{exit NF > 2 ? 0 : 1}'; then
     diff=$(printf 'Merge commit: %s\n' "$old_subject")
   else
-    # Commits that touch too much get a truncated diff; the model still sees
-    # the file list and the head of every hunk.
-    diff=$(git show --format= --no-color --stat=120 --patch "$commit")
-    if [ ${#diff} -gt "$MAX_DIFF" ]; then
-      stat=$(git show --format= --no-color --stat=120 "$commit")
-      patch_head=$(printf '%s' "$diff" | tail -n +"$(( $(printf '%s' "$stat" | wc -l) + 1 ))" | head -c "$MAX_DIFF")
-      diff=$(printf '%s\n[truncated]\n%s' "$stat" "$patch_head")
-    fi
+    # Oversized patches are cut to a per-file slice so every changed file still
+    # shows the head of its first hunk, not just the first files alphabetically.
+    files=$(git diff-tree --no-commit-id --name-only -0 -m --first-parent -r "$commit" | wc -l)
+    slice=$(( MAX_DIFF / (files + 1) ))
+    diff=$( {
+      git show --format= --no-color --stat=120 "$commit"
+      git diff-tree --no-commit-id --name-only -0 --first-parent -r -z "$commit" \
+        | while IFS= read -r -d '' f; do
+            git show --format= --no-color --patch "$commit" -- "$f" | head -c "$slice"
+            printf '\n[...]\n'
+          done
+    } | head -c "$MAX_DIFF")
   fi
 
-  prompt=$(build_prompt "$old_subject" "$old_body" "$diff")
-
+  feedback=''
   for attempt in 1 2 3; do
-    message=$(rewrite_message "$prompt" | normalise) && [ -n "$message" ] && break
-    echo "  retry $attempt for $commit" >&2
-    [ "$attempt" = 3 ] && { echo "Error: no message for $commit" >&2; exit 1; }
+    prompt=$(build_prompt "$old_subject" "$old_body" "$diff" "$feedback")
+    message=$(rewrite_message "$prompt" | normalise) || message=''
+    if [ -z "$message" ]; then
+      feedback='the answer was empty'
+    elif [[ ! "$(printf '%s\n' "$message" | head -n1)" =~ ^[a-z]+:\ [a-z0-9] ]]; then
+      feedback="the subject must start with a lowercase type and a colon, like 'fix: ...'"
+    else
+      break
+    fi
+    echo "  retry $attempt for $commit: $feedback" >&2
+    [ "$attempt" = 3 ] && { echo "Error: no usable message for $commit" >&2; exit 1; }
   done
 
   subject=$(printf '%s\n' "$message" | head -n1)
-  if [[ ! "$subject" =~ ^[a-z]+:\ ([a-z0-9]) ]]; then
-    echo "Error: invalid subject for $commit: $subject" >&2
-    exit 1
-  fi
 
   parent=$(printf '%s' "$message" | GIT_AUTHOR_NAME="$author_name" \
     GIT_AUTHOR_EMAIL="$author_email" GIT_AUTHOR_DATE="$author_date" \
