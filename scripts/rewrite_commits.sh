@@ -53,8 +53,9 @@ fi
 # subject, <=60 chars, optional body.
 STYLE=$(git log --format='%s%n%b=== ' -30 "$BASE" | head -c 4000)
 
-SYSTEM_PROMPT='You write git commit messages. Output only the commit message, no
-code fences, no commentary, no quotes. The subject line must start with a
+SYSTEM_PROMPT='You write git commit messages. Reply with the commit message and
+nothing else: no code fences, no commentary, no quotes, no explanation of your
+choice, no mention of the previous message. The subject line must start with a
 lowercase conventional-commit type followed by a colon and space (feat:, fix:,
 docs:, style:, refactor:, test:, chore:, ci:, perf:, build:), stay lowercase
 after the type, be at most 60 characters, and not end with a period. This rule
@@ -77,7 +78,9 @@ $STYLE
 Diff:
 $diff
 EOF
-  [ -n "$feedback" ] && printf '\nYour last answer was rejected: %s\n' "$feedback"
+  if [ -n "$feedback" ]; then
+    printf '\nYour last answer was rejected: %s\n' "$feedback"
+  fi
 }
 
 rewrite_message() {
@@ -94,13 +97,16 @@ $prompt"); then
 
 # Fix the things the model gets wrong most often instead of retrying: strip
 # fences and wrapping quotes, drop a conventional-commit scope the repo hook
-# rejects, lowercase the subject, drop a trailing period, truncate to 60. The
-# body, when present after a blank line, is kept as written.
+# rejects, lowercase the subject, drop a trailing period, truncate to 60. A
+# single blank line followed by body lines is kept; the message ends at the
+# next blank line, where models start explaining their answer.
 normalise() {
-  sed -e '/^```/d' | awk 'NR==1{print tolower($0); next} {print}' \
+  sed -e '/^```/d' \
+    | awk 'NF{e=1} e' \
+    | awk 'NR==1{print tolower($0); next} {print}' \
     | sed -e '1s/^[[:space:]"'\'']*//' -e '1s/[[:space:]"'\'']*$//' -e '1s/[.]*$//' \
     | sed -e '1s/^\([a-z]*\)([a-z0-9_-]*): /\1: /' \
-    | awk 'NR==1{print substr($0,1,60); next} {print}'
+    | awk 'NR==1{print substr($0,1,60); next} blank&&$0==""{exit} {blank=($0==""); print}'
 }
 
 parent=$BASE
