@@ -106,7 +106,7 @@ normalise() {
     | awk 'NR==1{print tolower($0); next} {print}' \
     | sed -e '1s/^[[:space:]"'\'']*//' -e '1s/[[:space:]"'\'']*$//' -e '1s/[.]*$//' \
     | sed -e '1s/^\([a-z]*\)([a-z0-9_-]*): /\1: /' \
-    | awk 'NR==1{print substr($0,1,60); next} blank&&$0==""{exit} {blank=($0==""); print}'
+    | awk 'NR==1{s=substr($0,1,60); if (length(s)==60) sub(/[[:space:]]*[^[:space:]]*$/,"",s); sub(/[[:space:]]+$/,"",s); print s; next} blank&&$0==""{exit} {blank=($0==""); print}'
 }
 
 parent=$BASE
